@@ -1,5 +1,8 @@
 <?php
-
+//Email bắt đầu A-Z a-z 0-9 và có it nhất 1 kí tự
+//tùy chọn theo A-Z a-z 0-9 và kết thúc bằng @
+//Domain sau @ và phải nằm trong A-Z a-z 0-9
+//Sau domail là phần mở rộng
 $pattern = '/^[A-Za-z0-9]+[A-Za-z0-9]*@[A-Za-z0-9]+(\.[A-Za-z0-9]+)$/';
 $subject1 = 'a@gmail.com';
 $subject2 = 'ab@gmail.com';
