@@ -40,6 +40,8 @@ function validate($data) {
 
     if ($data["password-repeat"] == "") {
         $errors["password-repeat"] = PASSWORD_REPEAT_REQUIRE; //"password-repeat must not be empty";
+    } else if ($data["password-repeat"] !== $data["password"]) {
+        $errors["password-repeat"] = PASSWORD_REPEAT_NOTMATCH;
     }
 //    else if (!filter_var($data["password-repeat"], FILTER_VALIDATE_PASSWORD_REPEAT)) {
 //        $errors["password-repeat"] = "Password-repeat is not a valid password-repeat";
@@ -55,9 +57,8 @@ function checkPassword($password) {
     $uppercase = preg_match('@[A-Z]@', $password);
     $lowercase = preg_match('@[a-z]@', $password);
     $number = preg_match('@[0-9]@', $password);
-    $specialChars = preg_match('@[^\w]@', $password);
 
-    if (!$uppercase || !$lowercase || !$number || !$specialChars ||strlen($password) < 8) {
+    if (!$uppercase || !$lowercase || !$number ||strlen($password) < 8) {
 //        echo 'Password should be at least 8 characters in length and should include at least one upper case letter, one number, and one special character.';
         return false;
     } else {
